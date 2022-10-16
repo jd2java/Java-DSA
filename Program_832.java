@@ -1,16 +1,13 @@
 // https://leetcode.com/problems/flipping-an-image/
 class Solution_832 {
     public int[][] flipAndInvertImage(int[][] image) {
-        for (int i = 0; i < image.length; i++) {
-            int j = 0;
-            int k = image.length - 1;
-            while (j < k) {
-                int temp = image[i][j];
-                image[i][j++] = image[i][k];
-                image[i][k--] = temp;
-            }
-            for (j = 0; j < image.length; j++) {
-                image[i][j] = image[i][j] == 1 ? 0 : 1;
+        for (int[] row : image) {
+            int i = 0;
+            int j = row.length - 1;
+            while (i <= j) {
+                int temp = row[i];
+                row[i++] = row[j] ^ 1;
+                row[j--] = temp ^ 1;
             }
         }
         return image;
